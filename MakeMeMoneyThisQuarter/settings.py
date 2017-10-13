@@ -129,13 +129,11 @@ USE_TZ = True
 # this was commented earlier '/var/www.static',
 #] this also
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join((PROJECT_ROOT), 'static')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+#STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

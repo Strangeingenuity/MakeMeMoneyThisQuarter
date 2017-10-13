@@ -1,1 +1,1 @@
-web: gunicorn kidsrus.wsgi
+web: gunicorn MakeMeMoneyThisQuarter.wsgi

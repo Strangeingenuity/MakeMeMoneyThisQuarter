@@ -6,7 +6,9 @@ from .models import StockCode
 from django.shortcuts import render
 # this below import is needed for handling resource errors.
 from django.http import Http404
-
+#Below library is for reading Website Data
+#import the library used to query a website
+import urllib2
 
 def index(request):
     all_StockCodes = StockCode.objects.all()
@@ -18,15 +20,12 @@ def index(request):
     #    url = '/TopPositivEarning2day/' + str(Stock.id) + '/'
     #    html += '<a href="' + url + '">' + Stock.StockCode + '</a><br>'
     # return HttpResponse(html)
-
     # Below is the way to do the same thing template way
-
     # this below line "template =" can be replaced with one statement which is using the render function.
     # template = loader.get_template('TopPositivEarning2day/index.html')
     # Here below is the dictionary. First the template is imported. Then the dictionary. This can be named anything. But Context is the standard.
     context = {
         'all_StockCodes' : all_StockCodes,
-
     }
     # so the above template line and the below return of a httpresponse can be replaced with a render function. because render has httpresponse built in to it.
     # return HttpResponse(template.render(context, request))
@@ -40,3 +39,10 @@ def detail(request,StockCode_id):
     except StockCode.DoesNotExist:
         raise Http404("Stock code does not exist")
     return render(request,'TopPositivEarning2day/detail.html',{'stockcode':stockcode})
+
+
+def fetchStockCodes():
+    #Write the function here to take today's date as input and spit out the positive earnings one.
+    #http://www.nasdaq.com/earnings/earnings-calendar.aspx?date=2017-Dec-01
+    # take today date and convert it in to "2017-Dec-01" format and then form the url and read through content
+    
